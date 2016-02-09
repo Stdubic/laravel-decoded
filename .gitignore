@@ -1,3 +1,6 @@
+/.idea
+/_ide_helper.php
+
 /vendor
 /node_modules
 Homestead.yaml
