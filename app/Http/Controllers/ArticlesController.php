@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Request;
 
 
+
 class ArticlesController extends Controller
 {
     public function index(){
@@ -32,7 +33,7 @@ class ArticlesController extends Controller
 		return view('articles.create');
 	}
 
-	public function store(Requests\CreateArticleRequest $request){
+	public function store(Requests\ArticleRequest $request){
 
 		$input = $request->all();
 
@@ -50,7 +51,7 @@ class ArticlesController extends Controller
 		return view('articles.edit', compact('articles'));
 	}
 
-	public function update($id, \Illuminate\Http\Request $request){
+	public function update($id, Requests\ArticleRequest $request){
 
 		$articles = Article::findOrFail($id);
 
