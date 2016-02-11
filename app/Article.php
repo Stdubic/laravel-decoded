@@ -11,4 +11,11 @@ class Article extends Model
 	    'body',
 	    'publish_at',
     ];
+
+	public function user(){
+
+		return $this->belognsTo('App\User');
+	}
 }
+
+
