@@ -12,8 +12,7 @@
 */
 
 Route::group(['middleware' => 'web'], function() {
-	Route::get('/', 'PagesController@home');
-	Route::resource('articles', 'ArticlesController');
+
 //	Route::get('/about', 'PagesController@about');
 //	Route::get('/articles', 'ArticlesController@index');
 //	Route::get('/articles/create', 'ArticlesController@create');
@@ -42,5 +41,7 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+   // Route::get('/home', 'HomeController@index');
+    Route::get('/', 'PagesController@home');
+    Route::resource('/articles', 'ArticlesController');
 });
