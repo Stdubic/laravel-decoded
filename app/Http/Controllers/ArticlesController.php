@@ -22,9 +22,9 @@ class ArticlesController extends Controller
 
 	public function show($id){
 
-		$articles = Article::findOrFail($id);
+		$article = Article::findOrFail($id);
 		//dd($article);
-		return view ('articles.show', compact('articles')) ;
+		return view ('articles.show', compact('article')) ;
 
 	}
 

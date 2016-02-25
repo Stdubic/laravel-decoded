@@ -10,10 +10,10 @@
                 <div class="panel-body">
                     <article>
                     <h2>
-                    {{$articles->title}}
+                    {{$article->title}}
                     </h2>
 
-                    <div class="body">{{$articles->body}}</div>
+                    <div class="body">{{$article->body}}</div>
 
                     </article>
                 </div>
