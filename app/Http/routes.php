@@ -11,14 +11,7 @@
 |
 */
 
-Route::group(['middleware' => 'web'], function() {
 
-//	Route::get('/about', 'PagesController@about');
-//	Route::get('/articles', 'ArticlesController@index');
-//	Route::get('/articles/create', 'ArticlesController@create');
-//	Route::get('/articles/{id}', 'ArticlesController@show');
-//	Route::post('/articles', 'ArticlesController@store');
-});
 
 
 
@@ -34,14 +27,13 @@ Route::group(['middleware' => 'web'], function() {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+
 
 Route::group(['middleware' => 'web'], function () {
+
+
     Route::auth();
 
-   // Route::get('/home', 'HomeController@index');
     Route::get('/', 'PagesController@home');
     Route::resource('/articles', 'ArticlesController');
 });
