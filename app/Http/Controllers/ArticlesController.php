@@ -8,6 +8,7 @@ use App\Article;
 use App\Http\Requests;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\Controller;
+use App\Tag;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,14 +35,17 @@ class ArticlesController extends Controller
 
 	public function create(){
 
-		return view('articles.create');
+        $tags = Tag::lists('name', 'id');
+
+		return view('articles.create', compact('tags'));
 	}
 
 	public function store(ArticleRequest $request){
 
-        $article = new Article($request->all());
+        $article = Auth::user()->articles()->create($request->all());
 
-        Auth::user()->articles()->save($article);
+        $article->tags()->sync($request->input('tag_list'));
+
 
 		return redirect('articles');
 
@@ -49,15 +53,20 @@ class ArticlesController extends Controller
 
 	public function edit($id){
 
-		$articles = Article::findOrFail($id);
-		return view('articles.edit', compact('articles'));
+		$article = Article::findOrFail($id);
+        $tags = Tag::lists('name', 'id');
+
+		return view('articles.edit', compact('article','tags'));
 	}
 
 	public function update($id, ArticleRequest $request){
 
-		$articles = Article::findOrFail($id);
+		$article = Article::findOrFail($id);
 
-		$articles->update($request->all());
+		$article->update($request->all());
+
+        $article->tags()->sync($request->input('tag_list'));
+
 
 		return redirect('articles');
 

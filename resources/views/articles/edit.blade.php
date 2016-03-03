@@ -11,7 +11,7 @@
                     <h1>Edit Article</h1>
 
 
-                    {!! Form::model($articles, ['method' =>  'PATCH', 'action' => ['ArticlesController@update', $articles->id]]) !!}
+                    {!! Form::model($article, ['method' =>  'PATCH', 'action' => ['ArticlesController@update', $article->id]]) !!}
 
                         @include('articles.form',['submitButtonText' => 'Edit Article'])
 
