@@ -26,7 +26,15 @@ class ArticleRequest extends Request
         return [
             'title' => 'required|min:3',
             'body' => 'required',
-            'publish_at' =>'required|date'
+            'publish_at' =>'required|date',
+            'tag' => 'required',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'title.required' => 'A turtle is required Ahahahah',
+            'body.required'  => 'A message is required',
         ];
     }
 }
