@@ -27,7 +27,7 @@ class ArticleRequest extends Request
             'title' => 'required|min:3',
             'body' => 'required',
             'publish_at' =>'required|date',
-            'tag' => 'required',
+            'tag_list' => 'required',
         ];
     }
     public function messages()
