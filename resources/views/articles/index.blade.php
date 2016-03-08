@@ -15,6 +15,9 @@
                     </h2>
                         <div class="body">{{$article->body}}</div>
                         <div class="body">{{$article->publish_at}}</div>
+                        <div class="body">{{$users[$article->user_id]}}</div>
+
+
 
                     @endforeach
                     </div>

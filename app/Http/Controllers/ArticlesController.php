@@ -9,6 +9,8 @@ use App\Http\Requests;
 use App\Http\Requests\ArticleRequest;
 use App\Http\Controllers\Controller;
 use App\Tag;
+use DB;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,14 +24,26 @@ class ArticlesController extends Controller
     public function index(){
 
 	    $articles = Article::latest('publish_at')->published()->get();
-	    return view ('articles.index', compact('articles')) ;
+        $users = $this->getUsersList();
+	    return view ('articles.index', compact('articles','users')) ;
+    }
+
+    private function getUsersList(){
+
+        return DB::table('users')->lists('name','id');
     }
 
 	public function show($id){
 
 		$article = Article::findOrFail($id);
-		//dd($article);
-		return view ('articles.show', compact('article')) ;
+        //$user = User::all()->where('id': '1');
+        // $users = DB::table('users')->lists('name','id');
+         $users = $this->getUsersList();
+
+
+        //dd($users);
+
+		return view ('articles.show', compact('article','users')) ;
 
 	}
 
@@ -69,7 +83,6 @@ class ArticlesController extends Controller
 
 
 		return redirect('articles');
-
 
 	}
 

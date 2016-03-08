@@ -15,6 +15,8 @@
 
                     <div class="body">{{$article->body}}</div>
 
+{{$users[$article->user_id]}}
+
                     </article>
                     @unless($article->tags->isEmpty())
                     <h5>Tags:</h5>
