@@ -36,13 +36,8 @@ class ArticlesController extends Controller
 	public function show($id){
 
 		$article = Article::findOrFail($id);
-        //$user = User::all()->where('id': '1');
-        // $users = DB::table('users')->lists('name','id');
-         $users = $this->getUsersList();
-
-
-        //dd($users);
-
+        $users = $this->getUsersList();
+        
 		return view ('articles.show', compact('article','users')) ;
 
 	}
@@ -77,9 +72,11 @@ class ArticlesController extends Controller
 
 		$article = Article::findOrFail($id);
 
+        $article->user_id = Auth::user()->id;
 		$article->update($request->all());
 
         $article->tags()->sync($request->input('tag_list'));
+
 
 
 		return redirect('articles');
