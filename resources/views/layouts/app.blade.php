@@ -50,6 +50,14 @@
                     <li><a href="{{ url('/articles') }}">Articles</a></li>
                 </ul>
 
+                <a class="navbar-brand">
+                Latest:
+                </a>
+                <ul class="nav navbar-nav ">
+                    <li>{{ link_to_action('ArticlesController@show', $latest->title, [$latest->id]) }}</li>
+                </ul>
+
+
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->

@@ -37,7 +37,7 @@ class ArticlesController extends Controller
 
 		$article = Article::findOrFail($id);
         $users = $this->getUsersList();
-        
+
 		return view ('articles.show', compact('article','users')) ;
 
 	}
