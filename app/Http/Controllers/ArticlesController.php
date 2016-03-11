@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticlesController extends Controller
 {
+    /**
+     *
+     */
     public function __construct(){
 
         $this->middleware('auth', ['except' => ['index', 'show']]);
@@ -28,11 +31,19 @@ class ArticlesController extends Controller
 	    return view ('articles.index', compact('articles','users')) ;
     }
 
+    /**
+     * @return mixed
+     */
     private function getUsersList(){
 
         return DB::table('users')->lists('name','id');
     }
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function show($id){
 
 		$article = Article::findOrFail($id);
@@ -42,6 +53,9 @@ class ArticlesController extends Controller
 
 	}
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function create(){
 
         $tags = Tag::lists('name', 'id');
@@ -49,6 +63,11 @@ class ArticlesController extends Controller
 		return view('articles.create', compact('tags'));
 	}
 
+    /**
+     * @param ArticleRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
 	public function store(ArticleRequest $request){
 
         $article = Auth::user()->articles()->create($request->all());
@@ -60,6 +79,11 @@ class ArticlesController extends Controller
 
 	}
 
+    /**
+     * @param $id
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
 	public function edit($id){
 
 		$article = Article::findOrFail($id);
@@ -68,6 +92,12 @@ class ArticlesController extends Controller
 		return view('articles.edit', compact('article','tags'));
 	}
 
+    /**
+     * @param $id
+     * @param ArticleRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
 	public function update($id, ArticleRequest $request){
 
 		$article = Article::findOrFail($id);
