@@ -112,5 +112,25 @@ class ArticlesController extends Controller
 		return redirect('articles');
 
 	}
+    /**
+     * @param $id
+     * @param ArticleRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+	public function update_bid($id, ArticleRequest $request){
+
+		$article = Article::findOrFail($id);
+
+        $article->user_id = Auth::user()->id;
+		$article->update($request->all());
+
+        $article->tags()->sync($request->input('tag_list'));
+
+
+
+		return redirect('articles');
+
+	}
 
 }
