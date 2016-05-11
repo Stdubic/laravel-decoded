@@ -7,13 +7,19 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dashboard</div>
 
+
                 <div class="panel-body">
-                    <h1>Edit Article</h1>
+                    <h1>Bid Article </h1>
 
 
-                    {!! Form::model($article, ['method' =>  'PATCH', 'action' => ['ArticlesController@update', $article->id]]) !!}
 
-                        @include('articles.form',['submitButtonText' => 'Edit Article'])
+        <h2>{{$test[0]}}</h2>
+
+
+
+                    {!! Form::model($article, ['method' =>  'PATCH', 'action' => ['BidController@update', $article->id]]) !!}
+
+                        @include('articles.bid-form',['submitButtonText' => 'Edit Article'])
 
                     {!! Form::close() !!}
                     @include('errors.list')
