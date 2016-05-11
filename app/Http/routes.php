@@ -15,7 +15,7 @@ Route::group(['middleware' => 'web'], function() {
 
     Route::get('/', 'PagesController@home');
     Route::resource('/articles', 'ArticlesController');
-    Route::resource('bid/articles', 'BidController');
+    Route::resource('/auctions', 'AuctionsController');
 
 
 });
